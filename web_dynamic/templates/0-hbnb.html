@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<meta charset="utf-8">
+	<title>AirBnb Clone</title>
+	<link rel="icon" href="../static/images/icon.png?{{ cache_id }}">
+	<link rel="stylesheet" href="../static/styles/4-common.css?{{ cache_id }}" type="text/css">
+	<link rel="stylesheet" href="../static/styles/3-header.css?{{ cache_id }}" type="text/css">
+	<link rel="stylesheet" href="../static/styles/3-footer.css?{{ cache_id }}" type="text/css">
+	<link rel="stylesheet" href="../static/styles/6-filters.css?{{ cache_id }}" type="text/css">
+	<link rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}" type="text/css">
+</head>
+<body>
+	<header>
+		<div class="img"></div>
+	</header>
+	<div class="container">
+		<section class="filters">
+			<div class="locations">
+				<h3>States</h3>
+				<h4>&nbsp;</h4>
+				<ul class="popover">
+					{% for state in states.values()|sort(attribute="name") %}
+					<li><h2>{{ state.name }}</h2>
+						<ul>
+							{% for city in state.cities|sort(attribute="name") %}
+							<li><h4>{{ city.name }}</h4></li>
+							{% endfor %}
+						</ul></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="amenities">
+				<h3>Amenities</h3>
+				<h4>&nbsp;</h4>
+				<ul class="popover">
+					{% for amenity in amenities.values()|sort(attribute="name") %}
+					<li><h4>{{ amenity.name }}</h4></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<button>
+				Search
+			</button>
+		</section>
+		<section class="places">
+			<h1>Places</h1>
+			{% for place in places.values()|sort(attribute="name") %}
+			<article>
+				<div class="header_place">
+					<div class="place_name"><h2>{{ place.name }}</h2></div>
+					<div class="price_by_night"><p>${{ place.price_by_night }}</p></div>
+				</div>
+				<div class="information">
+					<div class="max_guest">
+						<div class="img"></div>
+						<p>{{ place.max_guest }} Guest(s)</p>
+					</div>
+					<div class="number_rooms">
+						<div class="img"></div>
+						<p>{{ place.number_rooms }} Bedroom(s)</p>
+					</div>
+					<div class="number_bathrooms">
+						<div class="img"></div>
+						<p>{{ place.number_bathrooms }} Bathroom(s)</p>
+					</div>
+				</div>
+				<div class="user">
+					{% for user in users.values()|sort(attribute="first_name") %}
+						{% if user.id == place.user_id %}
+						<p><b>Owner:</b>{{ user.first_name }} {{ user.last_name }}</p>
+						{% endif %}
+					{% endfor %}
+				</div>
+				<div class="description">
+					<p>
+					{% autoescape false %}
+						{{ place.description }}
+					{% endautoescape %}
+					</p>
+				</div>
+				<div class="amenities">
+					<h2>Amenities</h2>
+					<ul>
+						{% for amen in place.amenities|sort(attribute="name") %}
+						<li><p>{{ amen.name }}</p></li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="reviews">
+					<h2>Reviews</h2>
+					<ul>
+						{% for review in place.reviews %}
+						<li>
+						{% for user in users.values() %}
+							{% if user.id == review.user_id %}
+							<h3>From {{ user.first_name }} {{ user.last_name }} the {{ review.updated_at.strftime("%Y-%m-%d at %H:%M:%S") }}</h3>
+							<p>
+								{% autoescape false %}
+								{{ review.text }}
+								{% endautoescape %}
+							</p>
+							{% endif %}
+						{% endfor %}
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</article>
+			{% endfor %}
+		</section>
+	</div>
+	<footer>
+		<div>Holberton School</div>
+	</footer>
+</body>
+</html>

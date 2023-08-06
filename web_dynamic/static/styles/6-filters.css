@@ -1,0 +1,120 @@
+.filters
+{
+	border: 1px solid;
+	border-color: #DDDDDD;
+	border-radius: 4px;
+	height: 70px;
+	width: 100%;
+	position: relative;
+}
+
+button
+{
+	font-size: 18px;
+	background-color: #FF5A5F;
+	color: #FFFFFF;
+	height: 48px;
+	width: 20%;
+	border-radius: 4px;
+	border: 0;
+	position: absolute;
+	top: 50%;
+	right: 30px;
+	transform: translateY(-50%);
+}
+
+button:hover
+{
+	opacity: 0.9;
+}
+
+.locations, .filters .amenities
+{
+	height: 100%;
+	width: 25%;
+	display: inline-block;
+	box-sizing: border-box;
+	padding-left: 50px;
+	position: absolute;
+	background-color: white;
+}
+
+.locations
+{
+	border-right: 1px solid;
+	border-right-color: #DDDDDD;
+}
+
+.filters .amenities
+{
+	left: 25%;
+}
+
+.locations h3, .filters .amenities h3
+{
+	font-weight: 600;
+	margin: 0 0 0 0;
+	padding-top: 15px;
+}
+
+.locations h4, .filters .amenities h4
+{
+	font-weight: 400;
+	font-size: 14px;
+	margin: 0;
+	padding-top: 3px;
+}
+
+.popover
+{
+	display: none;
+	background-color: #FAFAFA;
+	width: 100%;
+	border: 1px solid;
+	border-color: #DDDDDD;
+	border-radius: 4px;
+	position: absolute;
+	box-sizing: border-box;
+	margin: 0;
+	top: 100%;
+	left: 0px;
+	list-style-type: none;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	z-index: 250;
+	max-height: 300px;
+	overflow-y: scroll;
+}
+
+.locations:hover>.popover, .amenities:hover>.popover
+{
+	display: block;
+}
+
+.popover li
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	display: flex;
+}
+
+.popover li h2
+{
+	margin: 0;
+	font-size: 16px;
+	font-weight: 750;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	top: 0;
+	transform: translateY(-3%);
+}
+
+.popover li ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding-bottom: 20px;
+	top: 20px;
+	right: 100px;
+	position: relative;
+}

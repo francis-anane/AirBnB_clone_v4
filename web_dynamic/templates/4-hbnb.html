@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<meta charset="utf-8">
+	<title>AirBnb Clone</title>
+	<link rel="icon" href="../static/images/icon.png?{{ cache_id }}">
+	<link rel="stylesheet" href="../static/styles/4-common.css?{{ cache_id }}" type="text/css">
+	<link rel="stylesheet" href="../static/styles/3-header.css?{{ cache_id }}" type="text/css">
+	<link rel="stylesheet" href="../static/styles/3-footer.css?{{ cache_id }}" type="text/css">
+	<link rel="stylesheet" href="../static/styles/6-filters.css?{{ cache_id }}" type="text/css">
+	<link rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js?{{ cache_id }}"></script>
+	<script type="text/javascript" src="../static/scripts/4-hbnb.js?{{ cache_id }}"></script>
+</head>
+<body>
+	<header>
+		<div class="img"></div>
+		<div id="api_status" class="available"></div>
+	</header>
+	<div class="container">
+		<section class="filters">
+			<div class="locations">
+				<h3>States</h3>
+				<h4>&nbsp;</h4>
+				<ul class="popover">
+					{% for state in states.values()|sort(attribute="name") %}
+					<li><h2>{{ state.name }}</h2>
+						<ul>
+							{% for city in state.cities|sort(attribute="name") %}
+							<li><h4>{{ city.name }}</h4></li>
+							{% endfor %}
+						</ul></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="amenities">
+				<h3>Amenities</h3>
+				<h4 id="filter_amen_list">&nbsp;</h4>
+				<ul class="popover">
+					{% for amenity in amenities.values()|sort(attribute="name") %}
+					<li>
+						<input id="select_amenity" style="margin-left: 10px" type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">{{ amenity.name }}
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<button id="bt_search">
+				Search
+			</button>
+		</section>
+		<section class="places">
+		<h1>Places</h1>
+		<!-- places generated in jquery -->
+		</section>
+	</div>
+	<footer>
+		<div>Holberton School</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+footer {
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	bottom: 0%;
+	border-top: 1px solid;
+	border-top-color: #CCCCCC;
+	background-color: white;
+	z-index: 500;
+}
+footer div {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	text-align: center;
+}
